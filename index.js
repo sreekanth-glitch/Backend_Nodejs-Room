@@ -10,7 +10,7 @@ const app = express();
 
 dotEnv.config();
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
 // Connect to MongoDB
 mongoose
@@ -25,7 +25,7 @@ app.use("/details", detailsRoutes);
 app.use("/uploads", express.static("uploads"));
 
 // Home route
-app.get("/home", (req, res) => {
+app.get("/", (req, res) => {
   res.send("<h1>Welcome to Room</h1>"); // Close the <h1> tag for proper HTML
 });
 
