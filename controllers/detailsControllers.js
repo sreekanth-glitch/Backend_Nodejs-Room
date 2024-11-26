@@ -1,6 +1,7 @@
 const Details = require("../models/Details");
 const Room = require("../models/Room");
 const multer = require("multer");
+const path = require("path");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

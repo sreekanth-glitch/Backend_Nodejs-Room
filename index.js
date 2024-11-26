@@ -4,11 +4,12 @@ const dotEnv = require("dotenv");
 const bodyParser = require("body-parser");
 const roomRoutes = require("./routes/roomRoutes");
 const detailsRoutes = require("./routes/detailsRoutes");
-const path = require("path");
+const cors = require("cors");
 
 const app = express();
 
 dotEnv.config();
+app.use(cors());
 
 const PORT = process.env.PORT || 4000;
 
