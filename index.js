@@ -22,7 +22,7 @@ mongoose
 // Middleware
 app.use(bodyParser.json());
 app.use("/room", roomRoutes);
-app.use("/details", detailsRoutes);
+app.use("/detail", detailsRoutes);
 app.use("/uploads", express.static("uploads"));
 
 // Home route

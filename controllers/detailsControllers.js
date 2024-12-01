@@ -57,22 +57,39 @@ const addDetails = async (req, res) => {
   }
 };
 
-const deleteDetailsById = async (req, res) => {
+const getRoomDetails = async (req, res) => {
   try {
-    const roomId = req.params.detailsId;
+    const roomId = req.params.roomId;
 
-    const deletedDetails = await Details.findByIdAndDelete(detailsId);
+    const room = await Room.findById(roomId).populate("details");
 
-    if (!deletedDetails) {
-      return res.status(404).json({ error: "No room details found" });
+    if (!room) {
+      return res.status(404).json({ message: "Room not found" });
+    }
+
+    res.status(200).json(room.details);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const deleteRoomDetails = async (req, res) => {
+  try {
+    const detailsId = req.params.detailsId;
+    const deleteDetails = await Details.findByIdAndDelete(detailsId);
+
+    if (!deleteDetails) {
+      return res.status(404).json({ error: "No details found" });
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "internal server error" });
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
 module.exports = {
   addDetails: [upload.single("image"), addDetails],
-  deleteDetailsById,
+  getRoomDetails,
+  deleteRoomDetails,
 };

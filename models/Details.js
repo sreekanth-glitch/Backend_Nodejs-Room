@@ -16,11 +16,11 @@ const detailsSchema = new mongoose.Schema({
   },
   total: {
     type: Number,
-    min: 0, // Total must be a positive number
+    // Total must be a positive number
   },
   perHead: {
     type: Number,
-    min: 0, // perHead should also be positive
+    // perHead should also be positive
   },
   area: {
     type: String,
@@ -34,8 +34,7 @@ const detailsSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    minlength: 1, // Ensure it's not an empty string
-    maxlength: 500, // Optional: you can set a max length for the description
+    // Optional: you can set a max length for the description
   },
   image: {
     type: String,
